@@ -1,103 +1,131 @@
-<?php
-session_start();
-if(isset($_GET['logout'])){    
-	
-	//Simple exit message 
-    $logout_message = "<div class='msgln'><span class='left-info'>User <b class='user-name-left'>". $_SESSION['name'] ."</b> has left the chat session.</span><br></div>";
-    file_put_contents("log.html", $logout_message, FILE_APPEND | LOCK_EX);
-	
-	session_destroy();
-	header("Location: index.php"); //Redirect the user 
-}
-if(isset($_POST['enter'])){
-    if($_POST['name'] != ""){
-        $_SESSION['name'] = stripslashes(htmlspecialchars($_POST['name']));
-    }
-    else{
-        echo '<span class="error">Please type in a name</span>';
-    }
-}
-function loginForm(){
-    echo 
-    '<div id="loginform"> 
-<p>Please enter your name to continue!</p> 
-<form action="index.php" method="post"> 
-<label for="name">Name &mdash;</label> 
-<input type="text" name="name" id="name" /> 
-<input type="submit" name="enter" id="enter" value="Enter" /> 
-</form> 
-</div>';
-}
-?>
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>Tuts+ Chat Application</title>
-        <meta name="description" content="Tuts+ Chat Application" />
-        <link rel="stylesheet" href="style.css" />
-    </head>
-    <body>
-    <?php
-    if(!isset($_SESSION['name'])){
-        loginForm();
-    }
-    else {
-    ?>
-        <div id="wrapper">
-            <div id="menu">
-                <p class="welcome">Welcome, <b><?php echo $_SESSION['name']; ?></b></p>
-                <p class="logout"><a id="exit" href="#">Exit Chat</a></p>
-            </div>
-            <div id="chatbox">
-            <?php
-            if(file_exists("log.html") && filesize("log.html") > 0){
-                $contents = file_get_contents("log.html");          
-                echo $contents;
-            }
-            ?>
-            </div>
-            <form name="message" action="">
-                <input name="usermsg" type="text" id="usermsg" />
-                <input name="submitmsg" type="submit" id="submitmsg" value="Send" />
-            </form>
-        </div>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script type="text/javascript">
-            // jQuery Document 
-            $(document).ready(function () {
-                $("#submitmsg").click(function () {
-                    var clientmsg = $("#usermsg").val();
-                    $.post("post.php", { text: clientmsg });
-                    $("#usermsg").val("");
-                    return false;
-                });
-                function loadLog() {
-                    var oldscrollHeight = $("#chatbox")[0].scrollHeight - 20; //Scroll height before the request 
-                    $.ajax({
-                        url: "log.html",
-                        cache: false,
-                        success: function (html) {
-                            $("#chatbox").html(html); //Insert chat log into the #chatbox div 
-                            //Auto-scroll 
-                            var newscrollHeight = $("#chatbox")[0].scrollHeight - 20; //Scroll height after the request 
-                            if(newscrollHeight > oldscrollHeight){
-                                $("#chatbox").animate({ scrollTop: newscrollHeight }, 'normal'); //Autoscroll to bottom of div 
-                            }	
-                        }
-                    });
-                }
-                setInterval (loadLog, 2500);
-                $("#exit").click(function () {
-                    var exit = confirm("Are you sure you want to end the session?");
-                    if (exit == true) {
-                    window.location = "index.php?logout=true";
-                    }
-                });
-            });
-        </script>
-    </body>
+<html lang="en-US">
+<head>
+	<title>Smashing HTML5!</title>
+	<meta charset="utf-8" />
+	
+	<link rel="stylesheet" href="css/main.css" type="text/css" />
+	<!--[if IE]>
+	  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<!--[if lte IE 7]>
+		<link rel="stylesheet" type="text/css" media="all" href="css/ie.css"/>
+		<script src="js/IE8.js" type="text/javascript"></script><![endif]-->	
+	<!--[if lt IE 7]>
+		<link rel="stylesheet" type="text/css" media="all" href="css/ie6.css"/><![endif]-->
+
+</head>
+
+<body id="index" class="home">
+	
+	<header id="banner" class="body">
+		<h1><a href="#">Smashing HTML5! <strong>HTML5 in the year <del>2022</del> <ins>2012</ins></strong></a></h1>
+		<nav><ul>
+			<li class="active"><a href="#">home</a></li>
+			<li><a href="#">portfolio</a></li>
+			<li><a href="#">blog</a></li>
+			<li><a href="#">contact</a></li>
+		</ul></nav>
+	</header>
+	
+	<section id="content" class="body">
+	  
+	  <article class="hentry">	
+			<header>
+				<h2 class="entry-title"><a href="#" rel="bookmark" title="Permalink to this Building a Pusher-powered Real-Time Commenting System">Building a Pusher-powered Real-Time Commenting System</a></h2>
+			</header>
+			
+			<footer class="post-info">
+				<abbr class="published" title="2012-02-10T14:07:00-07:00">
+					10th February 2012
+				</abbr>
+				<address class="vcard author">
+					By <a class="url fn" href="#">Phil Leggetter</a>
+				</address>
+			</footer>
+			
+			<div class="entry-content">
+				<p>The web has become increasingly interactive over the years. This trend is set to continue with the next generation of applications driven by the <strong>real-time web</strong>. Adding real-time functionality to an application can result in a more interactive and engaging user experience. However, setting up and maintaining the server-side realtime components can be an unwanted distraction. But don't worry, there is a solution.</p>
+			</div>
+		</article>
+			
+	</section>
+	
+	<section id="comments" class="body">
+	  
+	  <header>
+			<h2>Comments</h2>
+		</header>
+    <ol id="posts-list" class="hfeed">
+      <li><article id="comment_1" class="hentry">	
+				<footer class="post-info">
+					<abbr class="published" title="Thu, 23 Feb 2012 23:54:46 +0000">
+						23 February 2012
+					</abbr>
+					<address class="vcard author">
+						By <a class="url fn" href="#">Phil Leggetter</a>
+					</address>
+				</footer>
+				<div class="entry-content">
+					<p>The Realtime Web Rocks!</p>
+				</div>
+			</article></li>
+		</ol>
+	</section>
+	
+	<section id="extras" class="body">
+		<div class="blogroll">
+			<h2>blogroll</h2>
+			<ul>
+				<li><a href="#" rel="external">HTML5 Doctor</a></li>
+				<li><a href="#" rel="external">HTML5 Spec (working draft)</a></li>
+				<li><a href="#" rel="external">Smashing Magazine</a></li>
+				<li><a href="#" rel="external">W3C</a></li>
+				<li><a href="#" rel="external">Wordpress</a></li>
+				<li><a href="#" rel="external">Wikipedia</a></li>
+				
+				<li><a href="#" rel="external">HTML5 Doctor</a></li>
+				<li><a href="#" rel="external">HTML5 Spec (working draft)</a></li>
+				<li><a href="#" rel="external">Smashing Magazine</a></li>
+				<li><a href="#" rel="external">W3C</a></li>
+				<li><a href="#" rel="external">Wordpress</a></li>
+				<li><a href="#" rel="external">Wikipedia</a></li>
+				
+				<li><a href="#" rel="external">HTML5 Doctor</a></li>
+				<li><a href="#" rel="external">HTML5 Spec (working draft)</a></li>
+				<li><a href="#" rel="external">Smashing Magazine</a></li>
+				<li><a href="#" rel="external">W3C</a></li>
+				<li><a href="#" rel="external">Wordpress</a></li>
+				<li><a href="#" rel="external">Wikipedia</a></li><article class="hentry">	
+			</ul>
+		</div>
+		
+		<div class="social">
+			<h2>social</h2>
+			<ul>
+				<li><a href="http://delicious.com/">delicious</a></li>
+				<li><a href="http://digg.com/">digg</a></li>
+				<li><a href="http://facebook.com/">facebook</a></li>
+				<li><a href="http://www.last.fm">last.fm</a></li>
+				<li><a href="http://website.com/feed/" rel="alternate">rss</a></li>
+				<li><a href="http://twitter.com/">twitter</a></li>
+			</ul>
+		</div>
+	</section>
+	
+	<footer id="contentinfo" class="body">
+		<address id="about" class="vcard body">
+			<span class="primary">
+				<strong><a href="#" class="fn url">Smashing Magazine</a></strong>
+				<span class="role">Amazing Magazine</span>
+			</span>
+		
+			<img src="images/avatar.gif" alt="Smashing Magazine Logo" class="photo" />
+		
+			<span class="bio">Smashing Magazine is a website and blog that offers resources and advice to web developers and web designers. It was founded by Sven Lennartz and Vitaly Friedman.</span>
+		
+		</address>
+		
+		<p>2005-2012 <a href="http://smashingmagazine.com">Smashing Magazine</a>.</p>
+	</footer>
+</body>
 </html>
-<?php
-}
-?>
