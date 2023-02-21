@@ -1,22 +1,65 @@
 <!DOCTYPE html>
-
 <html>
+<head>
+  <title>muskie's site</title>
+</head>
 <body>
-   <style> 
+  <style>
+
     body {background-color:#2B2B2B;}
       a {font-size:42px; text-decoration:none;}
-      p {font-size:42px;}
-</style>
-   <title>muskie's site</title>
-   <br><br>
-    
-    <a style="font-family:helvetica, roboto; color:cornflowerblue; text-decoration:none; " href="https://twitter.com/muskie_clark">&nbsp;&nbsp;twittttttttter</a><br><br><br>
-    <a style="font-family:helvetica, roboto; color:tomato; text-decoration:none; "href="https://music.apple.com/us/artist/muskie-clark/1668426978">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;apple music</a><br><br><br>
-    <a style="font-family:helvetica, roboto; color:violet; text-decoration:none; " href="https://www.instagram.com/muskie.clark/">&nbsp;instagram</a><br><br><br>
-    <a style="font-family:helvetica, roboto; color:#3CC1A7; text-decoration:none; "href="https://music.amazon.com/artists/B0BT8DLNKD/muskie-clark">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;amazon music</a><br><br><br>
-    <a style="font-family:helvetica, roboto; color:lightgreen; text-decoration:none; " href="https://open.spotify.com/artist/0vNDbTfzV4SsZQDUj3VyLD?si=75eb6ab843a64036">&nbsp;&nbsp;spotify</a><br><br><br>
-    <a style="font-family:helvetica, roboto; color:red; text-decoration:none; " href="https://www.youtube.com/channel/UCGDy7A9toJj8aNUpKWK7RyA">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;youtube music</a><br><br><br><br>
-    <a style="color:white; font-size:110px; text-decoration:none;" href="other.html">other stuff</a>
+      p {color:white; font-size:22px;}
+      
+      * {
+  box-sizing: border-box;
+  }
+
+ 
+  .column {
+  float: left;
+  padding: 10px;
+  height: 300px;
+  }
+
+  .left {
+  width: 45%;
+  }
+
+  .right {
+  width: 55%;
+  }
+
+ 
+  .row:after {
+  content: "";
+  display: table;
+  clear: both;
+  }
+  </style>
+  <div class="row">
+    <div class="column left">
+      <br>
+      <br>
+      <a style="font-family:helvetica, roboto; color:cornflowerblue; text-decoration:none;" href="https://twitter.com/muskie_clark">&nbsp;&nbsp;twittttttttter</a><br>
+      <br>
+      <br>
+      <a style="font-family:helvetica, roboto; color:tomato; text-decoration:none;" href="https://music.apple.com/us/artist/muskie-clark/1668426978">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;apple music</a><br>
+      <br>
+      <br>
+      <a style="font-family:helvetica, roboto; color:violet; text-decoration:none;" href="https://www.instagram.com/muskie.clark/">&nbsp;instagram</a><br>
+      <br>
+      <br>
+      <a style="font-family:helvetica, roboto; color:#3CC1A7; text-decoration:none;" href="https://music.amazon.com/artists/B0BT8DLNKD/muskie-clark">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;amazon music</a><br>
+      <br>
+      <br>
+      <a style="font-family:helvetica, roboto; color:lightgreen; text-decoration:none;" href="https://open.spotify.com/artist/0vNDbTfzV4SsZQDUj3VyLD?si=75eb6ab843a64036">&nbsp;&nbsp;spotify</a><br>
+      <br>
+      <br>
+      <a style="font-family:helvetica, roboto; color:red; text-decoration:none;" href="https://www.youtube.com/channel/UCGDy7A9toJj8aNUpKWK7RyA">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;youtube music</a><br>
+      <br>
+      <br>
+      <br>
+      <a style="color:white; font-size:110px; text-decoration:none;" href="other.html">other stuff</a><br>
       <br>
       <br>
       <br>
@@ -74,9 +117,15 @@
       <br>
       <br>
       <br>
-      <br>
-      <a style="font-family:helvetica, roboto; color:gray;"href="updates.html">information</a>
+      <a style="font-family:helvetica, roboto; color:gray;" href="updates.html">information</a>
       <p style="font-size:22px; font-family:helvetica, roboto; color:gray;">(c) 2023 muskieclark</p>
-    
-   </body>
+    </div>
+      <div class="column right">
+          <p style="font-size:72px;">announcements</p>
+          <p style="font-family:roboto, helvetica;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new single "nevertheless" out March 15!</p>
+          <p style="font-family:roboto, helvetica;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;working on "moon song". i'd like for<br>
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;it to be up around april smth?</p>
+      </div>
+  </div>
+</body>
 </html>
